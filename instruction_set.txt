@@ -1,0 +1,21 @@
+  c  |  b  |  a  |ex |  op  |
+-----|-----|-----|---|------|
+00000|00000|00000|000|000000| nop
+  c  |  b  |  a  |000|000001| add	reg[c]=reg[a]+reg[b];
+  c  |  b  |  a  |001|000001| sub	reg[c]=reg[a]-reg[b];
+  c  |  b  |  a  |010|000001| and	reg[c]=reg[a]&reg[b];
+  c  |  b  |  a  |011|000001| or	reg[c]=reg[a]|reg[b];
+  c  |  b  |  a  |100|000001| xor	reg[c]=reg[a]^reg[b];
+  c  |  b  |  a  |ex |000010| addi	reg[c]=reg[a]+{ex,b};
+     |     |     |   |      |
+  c  |  b  |  a  |ex |000011| beq	if(reg[a]==reg[b]) pc={ex,c};
+  c  |  b  |  a  |ex |000100| bne	if(reg[a]!=reg[b]) pc={ex,c};
+  c  |  b  |  a  |ex |000101| blt	if(reg[a]<reg[b]) pc={ex,c};
+  c  |  b  |  a  |ex |000110| bltu	if(reg[a]<reg[b]) pc={ex,c};
+  c  |  b  |  a  |ex |000111| jalr	reg[c]=pc+1; pc=reg[a]+{ex,b};
+     |     |     |   |      |
+  c  |  b  |  a  |ex |001000| lb	reg[c]=mem[reg[a]+{ex,b}];
+  c  |  b  |  a  |ex |001001| sb	mem[reg[a]+{ex,c}]=reg[b];
+     |     |     |   |      |
+00000|00000|00000|000|111111| pause
+__________________________________________________________________
